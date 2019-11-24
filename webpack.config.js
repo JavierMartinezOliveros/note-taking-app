@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
     entry: ['babel-polyfill', './src/js/index.js'],
@@ -14,6 +15,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './src/index.html'
+        }),
+        new MiniCssExtractPlugin({
+            filename: "./css/bundle.css"
         })
     ],
     module: {
@@ -26,16 +30,26 @@ module.exports = {
                 }
             },
             {
-                test: /\.s[ac]ss$/i,
+                test: /\.(sa|sc|c)ss$/,
+
                 use: [
-                  // Creates `style` nodes from JS strings
-                  'style-loader',
-                  // Translates CSS into CommonJS
-                  'css-loader',
-                  // Compiles Sass to CSS
-                  'sass-loader',
-                ],
-              },
+                    {
+                        loader: MiniCssExtractPlugin.loader
+                    }, 
+                    {
+                        loader: "css-loader",
+                    },
+                    {
+                        loader: "postcss-loader"
+                    },
+                    {
+                        loader: "sass-loader",
+                        options: {
+                        implementation: require("sass")
+                        }
+                    }
+                ]
+            },
         ]
     }
 };
