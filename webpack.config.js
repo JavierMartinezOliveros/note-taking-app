@@ -1,55 +1,51 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const path = require('path')
+// const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
 
 module.exports = {
-    entry: ['babel-polyfill', './src/js/index.js'],
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'js/bundle.js'
-    },
-    devServer: {
-        contentBase: './dist'
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: './src/index.html'
-        }),
-        new MiniCssExtractPlugin({
-            filename: "./css/bundle.css"
-        })
-    ],
-    module: {
-        rules: [
-            {
-                test: /\.js$/, //busca todo los archivos js
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader'
-                }
-            },
-            {
-                test: /\.(sa|sc|c)ss$/,
-
-                use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader
-                    }, 
-                    {
-                        loader: "css-loader",
-                    },
-                    {
-                        loader: "postcss-loader"
-                    },
-                    {
-                        loader: "sass-loader",
-                        options: {
-                        implementation: require("sass")
-                        }
-                    }
-                ]
-            },
+  entry: {
+    home: path.resolve(__dirname,'src/js/index.js'),
+  },
+  mode: 'development',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'js/[name].js'
+  },
+  devServer: {
+    hot: true,
+    open: true,
+    port: 9000,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
         ]
-    }
-};
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ]
+      },
+    ]
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'prueba webpack',
+      template: path.resolve(__dirname, 'index.html')
+    }),
+  ]
+}
