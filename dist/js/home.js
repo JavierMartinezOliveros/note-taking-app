@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "0ff830b92f74241e8d6e";
+/******/ 	var hotCurrentHash = "33456cdf846c7ed103ea";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -788,66 +788,19 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire("./babel/src/js/index.js")(__webpack_require__.s = "./babel/src/js/index.js");
+/******/ 	return hotCreateRequire("./src/js/index.js")(__webpack_require__.s = "./src/js/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./babel/src/css/index.css":
-/*!*********************************!*\
-  !*** ./babel/src/css/index.css ***!
-  \*********************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/sass/index.scss":
+/*!************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/sass/index.scss ***!
+  \************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("\nvar content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js!./index.css */ \"./node_modules/css-loader/dist/cjs.js!./babel/src/css/index.css\");\n\nif(typeof content === 'string') content = [[module.i, content, '']];\n\nvar transform;\nvar insertInto;\n\n\n\nvar options = {\"hmr\":true}\n\noptions.transform = transform\noptions.insertInto = undefined;\n\nvar update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ \"./node_modules/style-loader/lib/addStyles.js\")(content, options);\n\nif(content.locals) module.exports = content.locals;\n\nif(true) {\n\tmodule.hot.accept(/*! !../../../node_modules/css-loader/dist/cjs.js!./index.css */ \"./node_modules/css-loader/dist/cjs.js!./babel/src/css/index.css\", function() {\n\t\tvar newContent = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js!./index.css */ \"./node_modules/css-loader/dist/cjs.js!./babel/src/css/index.css\");\n\n\t\tif(typeof newContent === 'string') newContent = [[module.i, newContent, '']];\n\n\t\tvar locals = (function(a, b) {\n\t\t\tvar key, idx = 0;\n\n\t\t\tfor(key in a) {\n\t\t\t\tif(!b || a[key] !== b[key]) return false;\n\t\t\t\tidx++;\n\t\t\t}\n\n\t\t\tfor(key in b) idx--;\n\n\t\t\treturn idx === 0;\n\t\t}(content.locals, newContent.locals));\n\n\t\tif(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');\n\n\t\tupdate(newContent);\n\t});\n\n\tmodule.hot.dispose(function() { update(); });\n}\n\n//# sourceURL=webpack:///./babel/src/css/index.css?");
-
-/***/ }),
-
-/***/ "./babel/src/js/index.js":
-/*!*******************************!*\
-  !*** ./babel/src/js/index.js ***!
-  \*******************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/index.css */ \"./babel/src/css/index.css\");\n/* harmony import */ var _css_index_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_index_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _search__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search */ \"./babel/src/js/search.js\");\n/* harmony import */ var _render__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./render */ \"./babel/src/js/render.js\");\n\n\n\nvar id = prompt('quien es ese pokemon');\nObject(_search__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(id).then(function (data) {\n  Object(_render__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(data);\n})[\"catch\"](function () {\n  console.log('no hubo pokemon');\n});\n\n//# sourceURL=webpack:///./babel/src/js/index.js?");
-
-/***/ }),
-
-/***/ "./babel/src/js/render.js":
-/*!********************************!*\
-  !*** ./babel/src/js/render.js ***!
-  \********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nfunction render(data) {\n  var pokemon = document.createElement('img');\n  pokemon.setAttribute('src', data.sprites.front_default);\n  document.body.append(pokemon);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (render);\n\n//# sourceURL=webpack:///./babel/src/js/render.js?");
-
-/***/ }),
-
-/***/ "./babel/src/js/search.js":
-/*!********************************!*\
-  !*** ./babel/src/js/search.js ***!
-  \********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nfunction asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }\n\nfunction _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err); } _next(undefined); }); }; }\n\nfunction search(_x) {\n  return _search.apply(this, arguments);\n}\n\nfunction _search() {\n  _search = _asyncToGenerator(\n  /*#__PURE__*/\n  regeneratorRuntime.mark(function _callee(id) {\n    var response, pokemon;\n    return regeneratorRuntime.wrap(function _callee$(_context) {\n      while (1) {\n        switch (_context.prev = _context.next) {\n          case 0:\n            _context.next = 2;\n            return fetch(\"https://pokeapi.co/api/v2/pokemon/\".concat(id, \"/\"));\n\n          case 2:\n            response = _context.sent;\n            _context.next = 5;\n            return response.json();\n\n          case 5:\n            pokemon = _context.sent;\n            return _context.abrupt(\"return\", pokemon);\n\n          case 7:\n          case \"end\":\n            return _context.stop();\n        }\n      }\n    }, _callee);\n  }));\n  return _search.apply(this, arguments);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (search);\n\n//# sourceURL=webpack:///./babel/src/js/search.js?");
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js!./babel/src/css/index.css":
-/*!***********************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./babel/src/css/index.css ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Module\nexports.push([module.i, \"body {\\n  background: lightskyblue;\\n  display: flex;\\n  align-items: center;\\n  justify-content: center;\\n  min-height: 100vh;\\n  margin: 0;\\n  font-size: 40px;\\n  font-family: system-ui;\\n  color: white;\\n  text-shadow: 1px 1px 1px black;\\n  animation: 300ms latido infinite;\\n}\\n\\n@keyframes latido {\\n  0% {\\n    transform: scale(1.1)\\n  }\\n  50% {\\n    transform: scale(1)\\n  }\\n  100% {\\n    transform: scale(1.1)\\n  }\\n}\", \"\"]);\n\n\n\n//# sourceURL=webpack:///./babel/src/css/index.css?./node_modules/css-loader/dist/cjs.js");
+eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Module\nexports.push([module.i, \"body {\\n  align-items: center;\\n  background: #f7f7f7;\\n  color: #312e2e;\\n  display: flex;\\n  font-size: 16px;\\n  font-family: system-ui;\\n  font-weight: 500;\\n  justify-content: center;\\n  min-height: 100vh;\\n  margin: 0;\\n  width: 100%; }\\n\\n#root {\\n  background: #f7f7f7;\\n  width: 100%; }\\n\\n.container {\\n  display: block;\\n  margin: 0 auto;\\n  max-width: 1170px;\\n  padding: 0 15px;\\n  width: 100%; }\\n\\nh1 {\\n  font-size: 18px;\\n  font-weight: 300;\\n  margin-bottom: 10px;\\n  text-align: center; }\\n\\n.btn {\\n  background: white;\\n  border: 1px solid #28B9B5;\\n  border-radius: 5px;\\n  color: #28B9B5;\\n  cursor: pointer;\\n  display: inline-block;\\n  height: 43px;\\n  line-height: 1.1;\\n  transition: all .3s;\\n  vertical-align: middle; }\\n  .btn:hover {\\n    background: #28B9B5;\\n    color: white; }\\n\\n.add {\\n  display: flex;\\n  justify-content: center;\\n  width: 100%; }\\n  .add__container {\\n    display: flex; }\\n  .add__note {\\n    background-color: #fff;\\n    border: 1px solid #e7e7e7;\\n    border-radius: 5px;\\n    color: inherit;\\n    font-family: inherit;\\n    margin-right: 10px;\\n    min-width: 300px;\\n    padding: 12px 15px;\\n    transition: border 0.3s; }\\n\\n.note {\\n  margin: 20px auto;\\n  max-width: 435px;\\n  padding: 20px 0; }\\n  .note-container {\\n    display: flex;\\n    flex-direction: column;\\n    justify-content: center; }\\n    .note-container__edit {\\n      background: #4A4444;\\n      border-radius: 5px;\\n      display: flex;\\n      flex-direction: column;\\n      justify-content: center;\\n      margin: 10px 0;\\n      padding: 10px; }\\n  .note .edit__note {\\n    background-color: #fff;\\n    border: 1px solid #e7e7e7;\\n    border-radius: 5px;\\n    color: inherit;\\n    font-family: inherit;\\n    min-width: 380px;\\n    padding: 12px 15px;\\n    transition: border 0.3s; }\\n\\n.edit-controls {\\n  align-items: baseline;\\n  display: flex;\\n  justify-content: space-evenly;\\n  margin: 10px 0; }\\n  .edit-controls .controls {\\n    display: flex;\\n    justify-content: flex-end;\\n    width: 50%; }\\n    .edit-controls .controls .btn {\\n      margin: 0 0 0 15px; }\\n  .edit-controls .change-color {\\n    align-items: center;\\n    display: flex;\\n    width: 50%; }\\n    .edit-controls .change-color .btn {\\n      border: none;\\n      height: 25px;\\n      margin: 0 5px;\\n      width: 25px; }\\n    .edit-controls .change-color .blue__btn {\\n      background: #185DD4; }\\n    .edit-controls .change-color .red__btn {\\n      background: #DF291C; }\\n    .edit-controls .change-color .green__btn {\\n      background: #5DDF1C; }\\n\\n.blue-bg {\\n  background: #185DD4;\\n  color: white; }\\n\\n.red-bg {\\n  background: #DF291C;\\n  color: white; }\\n\\n.green-bg {\\n  background: #5DDF1C;\\n  color: white; }\\n\\n/*\\r\\n  @keyframes latido {\\r\\n    0% {\\r\\n      transform: scale(1.1)\\r\\n    }\\r\\n    50% {\\r\\n      transform: scale(1)\\r\\n    }\\r\\n    100% {\\r\\n      transform: scale(1.1)\\r\\n    }\\r\\n  }\\r\\n*/\\n\", \"\"]);\n\n\n\n//# sourceURL=webpack:///./src/sass/index.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js");
 
 /***/ }),
 
@@ -882,6 +835,29 @@ eval("/*\n\tMIT License http://www.opensource.org/licenses/mit-license.php\n\tAu
 /***/ (function(module, exports) {
 
 eval("\n/**\n * When source maps are enabled, `style-loader` uses a link element with a data-uri to\n * embed the css on the page. This breaks all relative urls because now they are relative to a\n * bundle instead of the current page.\n *\n * One solution is to only use full urls, but that may be impossible.\n *\n * Instead, this function \"fixes\" the relative urls to be absolute according to the current page location.\n *\n * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.\n *\n */\n\nmodule.exports = function (css) {\n  // get current location\n  var location = typeof window !== \"undefined\" && window.location;\n\n  if (!location) {\n    throw new Error(\"fixUrls requires window.location\");\n  }\n\n\t// blank or null?\n\tif (!css || typeof css !== \"string\") {\n\t  return css;\n  }\n\n  var baseUrl = location.protocol + \"//\" + location.host;\n  var currentDir = baseUrl + location.pathname.replace(/\\/[^\\/]*$/, \"/\");\n\n\t// convert each url(...)\n\t/*\n\tThis regular expression is just a way to recursively match brackets within\n\ta string.\n\n\t /url\\s*\\(  = Match on the word \"url\" with any whitespace after it and then a parens\n\t   (  = Start a capturing group\n\t     (?:  = Start a non-capturing group\n\t         [^)(]  = Match anything that isn't a parentheses\n\t         |  = OR\n\t         \\(  = Match a start parentheses\n\t             (?:  = Start another non-capturing groups\n\t                 [^)(]+  = Match anything that isn't a parentheses\n\t                 |  = OR\n\t                 \\(  = Match a start parentheses\n\t                     [^)(]*  = Match anything that isn't a parentheses\n\t                 \\)  = Match a end parentheses\n\t             )  = End Group\n              *\\) = Match anything and then a close parens\n          )  = Close non-capturing group\n          *  = Match anything\n       )  = Close capturing group\n\t \\)  = Match a close parens\n\n\t /gi  = Get all matches, not the first.  Be case insensitive.\n\t */\n\tvar fixedCss = css.replace(/url\\s*\\(((?:[^)(]|\\((?:[^)(]+|\\([^)(]*\\))*\\))*)\\)/gi, function(fullMatch, origUrl) {\n\t\t// strip quotes (if they exist)\n\t\tvar unquotedOrigUrl = origUrl\n\t\t\t.trim()\n\t\t\t.replace(/^\"(.*)\"$/, function(o, $1){ return $1; })\n\t\t\t.replace(/^'(.*)'$/, function(o, $1){ return $1; });\n\n\t\t// already a full url? no change\n\t\tif (/^(#|data:|http:\\/\\/|https:\\/\\/|file:\\/\\/\\/|\\s*$)/i.test(unquotedOrigUrl)) {\n\t\t  return fullMatch;\n\t\t}\n\n\t\t// convert the url to a full url\n\t\tvar newUrl;\n\n\t\tif (unquotedOrigUrl.indexOf(\"//\") === 0) {\n\t\t  \t//TODO: should we add protocol?\n\t\t\tnewUrl = unquotedOrigUrl;\n\t\t} else if (unquotedOrigUrl.indexOf(\"/\") === 0) {\n\t\t\t// path should be relative to the base url\n\t\t\tnewUrl = baseUrl + unquotedOrigUrl; // already starts with '/'\n\t\t} else {\n\t\t\t// path should be relative to current directory\n\t\t\tnewUrl = currentDir + unquotedOrigUrl.replace(/^\\.\\//, \"\"); // Strip leading './'\n\t\t}\n\n\t\t// send back the fixed url(...)\n\t\treturn \"url(\" + JSON.stringify(newUrl) + \")\";\n\t});\n\n\t// send back the fixed css\n\treturn fixedCss;\n};\n\n\n//# sourceURL=webpack:///./node_modules/style-loader/lib/urls.js?");
+
+/***/ }),
+
+/***/ "./src/js/index.js":
+/*!*************************!*\
+  !*** ./src/js/index.js ***!
+  \*************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sass_index_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../sass/index.scss */ \"./src/sass/index.scss\");\n/* harmony import */ var _sass_index_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_sass_index_scss__WEBPACK_IMPORTED_MODULE_0__);\n //\n\nvar App = document.getElementById('root'); //NOTE CONTROLLER\n\nvar noteController = function () {\n  var Note = function Note(id, description, value) {\n    this.id = id;\n    this.description = description;\n    this.value = value;\n  };\n\n  return {\n    addItem: function addItem(des, val) {\n      var newItem;\n\n      if (des !== \"\") {\n        newItem = new Note(des, val);\n      } // Return the new element\n\n\n      return newItem;\n    }\n  };\n}(); //UI CONTROLLER\n\n\nvar UIController = function () {\n  var DOMstrings = {\n    inputDescription: '.add__note',\n    inputBtn: '.add__btn',\n    container: '.note-container',\n    inputSave: 'save__btn',\n    inputEdit: 'edit__btn',\n    inputChangeBlue: 'blue__btn',\n    inputChangeReed: 'red__btn',\n    inputChangeGreen: 'green__btn'\n  };\n  return {\n    getInput: function getInput() {\n      return {\n        description: document.querySelector(DOMstrings.inputDescription).value\n      };\n    },\n    addListItem: function addListItem(obj, des) {\n      var html, newHtml, element;\n\n      if (des !== '') {\n        element = DOMstrings.container;\n        html = '<div class=\"note-container__edit\"><input type=\"text\" class=\"edit__note\" placeholder=\"%note%\"><div class=\"edit-controls\"><div class=\"change-color\"><button class=\"blue__btn btn\"></button><button class=\"red__btn btn\"></button><button class=\"green__btn btn\"></button></div><div class=\"controls\"><button class=\"edit__btn btn\">Edit</button><button class=\"save__btn btn\">Save</button><button class=\"delete__btn btn\">Delete</button></div></div></div>';\n      } // Replace the placeholder text with some actual data\n\n\n      newHtml = html.replace('%note%', obj.description); // Insert the HTML into the DOM\n\n      document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);\n    },\n    getDOMstrings: function getDOMstrings() {\n      return DOMstrings;\n    }\n  };\n}(); //GLOBAL APP CONTROLLER\n\n\nvar controller = function (noteCtrl, UICtrl) {\n  var setupEventListeners = function setupEventListeners() {\n    var DOM = UICtrl.getDOMstrings();\n    document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);\n    document.addEventListener('keypress', function (event) {\n      if (event.keyCode === 13 || event.which === 13) {\n        ctrlAddItem();\n      }\n    }); //document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);\n    //document.querySelector(DOM.inputType).addEventListener('change', UICtrl.changedType);        \n  };\n\n  var ctrlAddItem = function ctrlAddItem() {\n    var input, newItem; // 1. Get the field input data\n\n    input = UICtrl.getInput();\n    console.log(input);\n\n    if (input.description !== \"\") {\n      // 2. Add the item to the budget controller\n      newItem = noteCtrl.addItem(input.type, input.description, input.value); // 3. Add the item to the UI\n\n      UICtrl.addListItem(newItem, input.type); // 4. Clear the fields\n      //UICtrl.clearFields();\n      // 5. Calculate and update budget\n      //updateBudget();\n      // 6. Calculate and update percentages\n      //updatePercentages();\n    }\n  };\n\n  return {\n    init: function init() {\n      console.log('Application has started.');\n      setupEventListeners();\n    }\n  };\n}(noteController, UIController);\n\ncontroller.init();\n\n//# sourceURL=webpack:///./src/js/index.js?");
+
+/***/ }),
+
+/***/ "./src/sass/index.scss":
+/*!*****************************!*\
+  !*** ./src/sass/index.scss ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("\nvar content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/lib/loader.js!./index.scss */ \"./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/sass/index.scss\");\n\nif(typeof content === 'string') content = [[module.i, content, '']];\n\nvar transform;\nvar insertInto;\n\n\n\nvar options = {\"hmr\":true}\n\noptions.transform = transform\noptions.insertInto = undefined;\n\nvar update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ \"./node_modules/style-loader/lib/addStyles.js\")(content, options);\n\nif(content.locals) module.exports = content.locals;\n\nif(true) {\n\tmodule.hot.accept(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/lib/loader.js!./index.scss */ \"./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/sass/index.scss\", function() {\n\t\tvar newContent = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/lib/loader.js!./index.scss */ \"./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/sass/index.scss\");\n\n\t\tif(typeof newContent === 'string') newContent = [[module.i, newContent, '']];\n\n\t\tvar locals = (function(a, b) {\n\t\t\tvar key, idx = 0;\n\n\t\t\tfor(key in a) {\n\t\t\t\tif(!b || a[key] !== b[key]) return false;\n\t\t\t\tidx++;\n\t\t\t}\n\n\t\t\tfor(key in b) idx--;\n\n\t\t\treturn idx === 0;\n\t\t}(content.locals, newContent.locals));\n\n\t\tif(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');\n\n\t\tupdate(newContent);\n\t});\n\n\tmodule.hot.dispose(function() { update(); });\n}\n\n//# sourceURL=webpack:///./src/sass/index.scss?");
 
 /***/ })
 

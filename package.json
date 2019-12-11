@@ -4,7 +4,7 @@
   "description": "note-taking app",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --entry ./index.js --output ./bundle.js --mode development",
+    "build": "webpack",
     "build:sass": "webpack-dev-server"
   },
   "keywords": [
