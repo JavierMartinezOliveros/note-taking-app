@@ -1,125 +1,177 @@
-import '../sass/index.scss'
+import "../sass/index.scss";
 
 //
-const App =  document.getElementById('root');
+const App = document.getElementById("root");
 //NOTE CONTROLLER
 var noteController = (function() {
-    
-    var Note = function(id, description, value) {
-        this.id = id;
-        this.description = description;
-        this.value = value;
-    };
+  var Note = function(id, description, value) {
+    this.id = id;
+    this.description = description;
+    this.value = value;
+  };
 
-    return {
-        addItem: function(des, val) {
-            var newItem;
-            
-            if (des !== "") {
-                newItem = new Note(des, val);
-            } 
-            
-            // Return the new element
-            return newItem;
-        }    
-    };
+  return {
+    addItem: function(des, val) {
+      var newItem;
 
-})();   
+      if (des !== "") {
+        newItem = new Note(des, val);
+      }
+
+      // Return the new element
+      return newItem;
+    }
+  };
+})();
 
 //UI CONTROLLER
 var UIController = (function() {
-    var DOMstrings = {
-        inputDescription: '.add__note',
-        inputBtn: '.add__btn',
-        container: '.note-container',
-        inputSave: 'save__btn',
-        inputEdit: 'edit__btn',
-        inputChangeBlue: 'blue__btn',
-        inputChangeReed: 'red__btn',
-        inputChangeGreen: 'green__btn'
-    };  
+  var DOMstrings = {
+    inputDescription: ".add__note",
+    inputBtn: ".add__btn",
+    container: ".note-container",
+    inputEdit: "edit__btn",
+    inputChangeBlue: "blue__btn",
+    inputChangeReed: "red__btn",
+    inputChangeGreen: "green__btn"
+  };
 
-    return {
-        getInput: function() {
-            return{
-                description: document.querySelector(DOMstrings.inputDescription).value
-            };   
-        },
+  return {
+    getInput: function() {
+      return {
+        description: document.querySelector(DOMstrings.inputDescription).value
+      };
+    },
 
-        addListItem: function(obj, des) {
-            var html, newHtml, element;
-            
-            if (des !== '') {
-                element = DOMstrings.container;
-                html = '<div class="note-container__edit"><input type="text" class="edit__note" placeholder="%note%"><div class="edit-controls"><div class="change-color"><button class="blue__btn btn"></button><button class="red__btn btn"></button><button class="green__btn btn"></button></div><div class="controls"><button class="edit__btn btn">Edit</button><button class="save__btn btn">Save</button><button class="delete__btn btn">Delete</button></div></div></div>';
-            }    
+    addListItem: function(obj, des) {
+      var html, newHtml, element;
 
-            // Replace the placeholder text with some actual data
-            newHtml = html.replace('%note%', obj.description);
-            
-            // Insert the HTML into the DOM
-            document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
-        },
+      if (des !== "") {
+        element = DOMstrings.container;
 
-        getDOMstrings: function() {
-            return DOMstrings;
-        }
+        html = `
+                        <div class="note-container__edit">
+                            <div class="bg-color">
+                                <input type="text" class="edit__note" placeholder="${obj.description}" disabled="true">
+                                <div class="edit-controls">
+                                    <div class="change-color">
+                                            <button class="blue__btn btn" changecolor datacolor="blue"></button>
+                                            <button class="red__btn btn" changecolor datacolor="red"></button>
+                                    <button class="green__btn btn" changecolor datacolor="green"></button>
+                                    </div>
+                                    <div class="controls">
+                                        <button class="edit__btn btn">Edit</button>
+                                        <button class="delete__btn btn">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+        				</div>
+        			`;
+      }
+
+
+      let allInputs = document.getElementsByClassName("add__note");
+      const addInput = allInputs[0];
+
+      document.querySelector(element).insertAdjacentHTML("beforeend", html);
+      addInput.value = "";
+    },
+
+    getDOMstrings: function() {
+      return DOMstrings;
     }
-
+  };
 })();
 
 //GLOBAL APP CONTROLLER
 var controller = (function(noteCtrl, UICtrl) {
+  var setupEventListeners = function() {
+    var DOM = UICtrl.getDOMstrings();
 
-    var setupEventListeners = function() {
-        var DOM = UICtrl.getDOMstrings();
-        
-        document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
+    document.querySelector(DOM.inputBtn).addEventListener("click", ctrlAddItem);
 
-        document.addEventListener('keypress', function(event) {
-            if (event.keyCode === 13 || event.which === 13) {
-                ctrlAddItem();
-            }
-        });
-        
-        //document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
-        
-        //document.querySelector(DOM.inputType).addEventListener('change', UICtrl.changedType);        
-    };
+    document.addEventListener("keypress", function(event) {
+      if (event.keyCode === 13 || event.which === 13) {
+        ctrlAddItem();
+      }
+    });
 
-    var ctrlAddItem = function() {
-        var input, newItem;
-        
-        // 1. Get the field input data
-        input = UICtrl.getInput();  
-        
-        console.log(input)
-        
-        if (input.description !== "") {
-            // 2. Add the item to the budget controller
-            newItem = noteCtrl.addItem(input.type, input.description, input.value);
+    document
+      .querySelector(DOM.container)
+      .addEventListener("click", ctrlAlltriggerClicks);
 
-            // 3. Add the item to the UI
-            UICtrl.addListItem(newItem, input.type);
+  };
 
-            // 4. Clear the fields
-            //UICtrl.clearFields();
+  const ctrlAlltriggerClicks = function(fun) {
+    const thisButton = fun.toElement;
+    let classBt = !!thisButton.getAttribute("datacolor")
+      ? "color"
+      : thisButton.className;
 
-            // 5. Calculate and update budget
-            //updateBudget();
-            
-            // 6. Calculate and update percentages
-            //updatePercentages();
-        }
-    };
+    switch (classBt) {
+      case "delete__btn btn":
+        ctrlDeleteItem(fun);
+        break;
+      case "edit__btn btn":
+        ctrlEditItem(fun);
+        break;
+      case "color":
+        ctrlEditColor(fun);
+        break;
+    }
+  };
 
-    return {
-        init: function() {
-            console.log('Application has started.');
-            setupEventListeners();
-        }
-    };
+  const ctrlEditColor = function(del) {
+    const thisButton = del.toElement;
+    let color = thisButton.getAttribute("datacolor");
+    let el = del.toElement;
+		while (el.className.indexOf('bg-color') === -1) {
+      el = el.parentNode;
+    }
+    el.setAttribute("class", `bg-color ${color}`);
+  };
 
+  const ctrlEditItem = function(del) {
+    let el = del.toElement;
+    while (el.className !== "note-container__edit") {
+      el = el.parentNode;
+    }
+    let inputEdit = el.getElementsByClassName("edit__note");
+    inputEdit[0].disabled = false;
+    inputEdit[0].focus();
+  };
+
+  const ctrlDeleteItem = function(del) {
+    let el = del.toElement;
+    while (el.className !== "note-container__edit") {
+      el = el.parentNode;
+    }
+    el.remove();
+  };
+
+  var ctrlAddItem = function() {
+    var input, newItem;
+
+    // 1. Get the field input data
+    input = UICtrl.getInput();
+
+    if (input.description !== "") {
+      // 2. Add the item
+      newItem = noteCtrl.addItem(input.type, input.description, input.value);
+
+      // 3. Add the item to the UI
+      UICtrl.addListItem(newItem, input.type);
+
+
+    }
+  };
+
+  return {
+    init: function() {
+      console.log("Application has started.");
+      setupEventListeners();
+    }
+  };
 })(noteController, UIController);
 
 controller.init();
